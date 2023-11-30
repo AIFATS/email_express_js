@@ -1,3 +1,4 @@
+const fs = require("fs");
 const axios = require("axios");
 const { generateConfig } = require("./utils");
 const nodemailer = require("nodemailer");
@@ -25,9 +26,12 @@ async function sendMail(req, res) {
       },
     });
 
+    // Read the HTML file content
+    const htmlContent = fs.readFileSync("Mail.html", "utf-8");
+
     const mailOptions = {
       ...CONSTANTS.mailoptions,
-      text: "The Gmail API with NodeJS works ",
+      html: htmlContent, // Set the HTML content here
     };
 
     const result = await transport.sendMail(mailOptions);
