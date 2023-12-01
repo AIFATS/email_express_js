@@ -1,3 +1,4 @@
+
 const { generateConfig } = require("./utils");
 const nodemailer = require("nodemailer");
 const CONSTANTS = require("./constants");
@@ -15,10 +16,16 @@ async function sendMail(req, res) {
       },
     });
 
+    // Read the HTML file content
+    const htmlContent = fs.readFileSync("Mail.html", "utf-8");
+
     const mailOptions = {
       ...CONSTANTS.mailoptions,
+
       to: recipientEmail,
-      text: "hii this is mahesh this is inform you that your friend is kidnapped ",
+
+      html: htmlContent, // Set the HTML content here
+
     };
 
     const result = await transport.sendMail(mailOptions);
