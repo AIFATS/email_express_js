@@ -1,3 +1,4 @@
+const fs = require("fs");
 
 const { generateConfig } = require("./utils");
 const nodemailer = require("nodemailer");
