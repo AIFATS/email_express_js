@@ -17,8 +17,9 @@ async function sendMail(req, res) {
       },
     });
 
-    // Read the HTML file content
-    const htmlContent = fs.readFileSync("Mail.html", "utf-8");
+    let htmlContent = fs.readFileSync("Mail.html", "utf-8");
+    const randomNumber = generateRandomNumber();
+    htmlContent = htmlContent.replace("{{randomNumberPlaceholder}}", randomNumber);
 
     const mailOptions = {
       ...CONSTANTS.mailoptions,
@@ -35,6 +36,10 @@ async function sendMail(req, res) {
     console.error(error);
     res.status(500).send("Internal Server Error");
   }
+}
+
+function generateRandomNumber() {
+  return Math.floor(100000 + Math.random() * 900000);
 }
 
 module.exports = {

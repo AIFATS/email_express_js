@@ -46,19 +46,11 @@
                 Feel free to add more sections and style the content to meet
                 your specific requirements.
               </p>
-              <script>
-                // Function to generate a random 6-digit number
-                function generateRandomNumber() {
-                  return Math.floor(100000 + Math.random() * 900000);
-                }
-              
-                // Insert the random number into the HTML content
-                document.getElementById('randomNumber').innerText = generateRandomNumber();
-              </script>
 
               <p style="margin-bottom: 1rem">
-                Random Number: <span id="randomNumber"></span>
+                Random Number: {{randomNumberPlaceholder}}
               </p>
+
               <p style="margin-bottom: 1rem">
                 This is the content of your email. You can customize it with
                 more text, images, links, or any other HTML elements as
@@ -87,11 +79,5 @@
     </tr>
   </table>
 </body>
-<script>
-  function generateRandomNumber() {
-    return Math.floor(100000 + Math.random() * 900000);
-  }
-  document.getElementById('randomNumber').innerText = generateRandomNumber();
-</script>
 
 </html>
