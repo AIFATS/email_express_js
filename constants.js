@@ -1,4 +1,17 @@
+const axios = require("axios");
+const { generateConfig } = require("./utils");
+const nodemailer = require("nodemailer");
+const { google } = require("googleapis");
+
 require("dotenv").config();
+
+const oAuth2Client = new google.auth.OAuth2(
+  process.env.CLIENT_ID,
+  process.env.CLIENT_SECRET,
+  process.env.REDIRECT_URI
+);
+
+oAuth2Client.setCredentials({ refresh_token: process.env.REFRESH_TOKEN });
 
 const auth = {
   type: "OAuth2",
@@ -9,12 +22,12 @@ const auth = {
 };
 
 const mailoptions = {
-  from: "Mahesh <maheshd.mah@gmail.com>",
-  to: "maheshd.mah@gmail.com",
-  subject: "Gmail API NodeJS",
+  from: "Mahesh <rozzabhishekmandal@gmail.com>",
+  subject: "hii this is mahesh this is inform you that your friend is kidnapped ",
 };
 
 module.exports = {
   auth,
   mailoptions,
+  oAuth2Client,
 };
