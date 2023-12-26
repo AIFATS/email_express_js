@@ -1,6 +1,6 @@
 const express = require("express");
 const cors = require("cors"); // Import the cors middleware
-const routes = require("./routes");
+const routes = require("./routes/routes");
 require("dotenv").config();
 
 const app = express();

@@ -1,5 +1,5 @@
 const fs = require("fs");
-const { generateConfig } = require("./utils");
+const { generateConfig } = require("../routes/utils");
 const nodemailer = require("nodemailer");
 const CONSTANTS = require("./constants");
 const { MongoClient } = require("mongodb");
@@ -40,7 +40,7 @@ async function sendMail(req, res) {
       },
     });
 
-    let htmlContent = fs.readFileSync("Mail.html", "utf-8");
+    let htmlContent = fs.readFileSync("./sendotp/Mail.html", "utf-8");
     htmlContent = htmlContent.replace("{{randomNumberPlaceholder}}", randomNumber);
 
     const mailOptions = {
