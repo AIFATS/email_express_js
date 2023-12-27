@@ -37,7 +37,7 @@ async function sendEmails() {
 
     // Send emails with a 12-second delay between each email
     for (const emailData of emails) {
-      let htmlContent = fs.readFileSync("./marketing/marketing.html", "utf-8");
+      let htmlContent = fs.readFileSync("./coupon/coupon.html", "utf-8");
 
       const mailOptions = {
         ...CONSTANTS.mailoptions,
