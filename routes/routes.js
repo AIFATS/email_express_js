@@ -1,7 +1,7 @@
 const express = require("express");
 const controllers = require("../sendotp/controllers");
 const emailController = require("../marketing/emailController"); // Import the new email controller
-const couponController = require("../coupon/couponController");
+const couponController = require("../coupons/couponController");
 const router = express.Router();
 
 router.post("/mail/send", controllers.sendMail);
