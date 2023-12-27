@@ -6,10 +6,13 @@ const { generateConfig } = require("../routes/utils");
 const CONSTANTS = require("../sendotp/constants");
 
 // Connect to MongoDB
-const client = new MongoClient("mongodb+srv://maheshdmah:Mahesh%40divya@cluster0.36cpwss.mongodb.net/?retryWrites=true&w=majority", {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
+const client = new MongoClient(
+  "mongodb+srv://maheshdmah:Mahesh%40divya@cluster0.36cpwss.mongodb.net/?retryWrites=true&w=majority",
+  {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  }
+);
 
 async function sendEmails() {
   try {
@@ -35,13 +38,12 @@ async function sendEmails() {
     // Send emails with a 12-second delay between each email
     for (const emailData of emails) {
       let htmlContent = fs.readFileSync("./marketing/marketing.html", "utf-8");
-      // htmlContent = htmlContent.replace("{{randomNumberPlaceholder}}", `${emailData.name}`);
 
       const mailOptions = {
         ...CONSTANTS.mailoptions,
         to: emailData.email,
         subject: `Great offer ${emailData.name}`,
-        text: htmlContent,
+        html: htmlContent, // Use html property instead of text
       };
 
       // Send the email
@@ -49,7 +51,7 @@ async function sendEmails() {
       console.log(`Email sent to ${emailData.email}:`, result);
 
       // Wait for 12 seconds before sending the next email
-      await new Promise(resolve => setTimeout(resolve, 12000));
+      await new Promise((resolve) => setTimeout(resolve, 12000));
     }
 
     console.log("All emails sent successfully");
